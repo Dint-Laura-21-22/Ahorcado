@@ -1,0 +1,29 @@
+﻿<Window x:Class="Ahorcado.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ahorcado"
+        mc:Ignorable="d"
+        Title="Ahorcado" MinHeight="650" MinWidth="900">
+    <Grid Style="{StaticResource FondoJuegoGrid}">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="/assets/0.jpg" Stretch="Uniform" Margin="0,20"></Image>
+
+        <TextBlock Style="{StaticResource TituloEstiloTextBlock}" Grid.Row="0" Grid.Column="1" Text="Ahorcado" >
+        </TextBlock>
+        <TextBox Style="{StaticResource EstiloTextBox}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,31,52,29" HorizontalScrollBarVisibility="Auto"></TextBox>
+    </Grid>
+</Window>
