@@ -30,24 +30,56 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--Estilo TextBox juego-->
-        <Style TargetType="{x:Type TextBox}" x:Key="EstiloTextBox">
+        <!--Estilo TextBlock-->
+        <Style TargetType="{x:Type TextBlock}" x:Key="PalabrasTexto">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Times New Roman"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+
+        </Style>
+        <!--Estilo WrapPanel de Palabra-->
+        <Style TargetType="{x:Type WrapPanel}" x:Key="EstiloContenedorPalabras">
+            <Setter Property="Margin" Value="20"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="White" Offset="0.402"/>
-                        <GradientStop Color="#FF809989" Offset="0.955"/>
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#FF69BF2D"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
         </Style>
         <!--Estilo general de los botones-->
-        <Style TargetType="{x:Type Button}">
-            
+        <Style TargetType="{x:Type Button}" x:Key="BotonesControl">
+            <Setter Property="FontFamily" Value="Comic Sans"/>
+            <Setter Property="FontFamily" Value="18"/>
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="40,5"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="White" Offset="0.971"/>
+                        <GradientStop Color="#FF82B284" Offset="0.004"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
-        <!--Estilo del teclado de botones-->
-        <Style TargetType="{x:Type Button}">
-            
+        <Style TargetType="{x:Type UniformGrid}" x:Key="UniformGridEstilo">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="White" Offset="0.971"/>
+                        <GradientStop Color="#FF82B284" Offset="0.004"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Application.Resources>
 </Application>
