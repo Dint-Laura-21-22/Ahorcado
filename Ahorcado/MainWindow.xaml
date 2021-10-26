@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ahorcado"
         mc:Ignorable="d"
-        Title="Ahorcado" MinHeight="650" MinWidth="900">
+        Title="Ahorcado" MinHeight="650" MinWidth="900" KeyDown ="Window_KeyDown">
     <Grid Style="{StaticResource FondoJuegoGrid}">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

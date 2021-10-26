@@ -20,6 +20,9 @@ namespace Ahorcado
     /// </summary>
     public partial class MainWindow : Window
     {
+        TextBlock palabra = new TextBlock();
+    
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +50,8 @@ namespace Ahorcado
 
            
             // Creamos el contenedor de la palabra //
-            TextBlock palabra = new TextBlock();
+
+            
             ScrollViewer scroll = new ScrollViewer();
             scroll.Content = palabra;
             scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
@@ -55,50 +59,53 @@ namespace Ahorcado
             PalabrasWrapPanel.Children.Add(scroll);
             palabra.Style = (Style)Application.Current.Resources["PalabrasTexto"];
             String palabraSecreta = PalabraSecretaRandom();
-            palabra.Text = RallitasPalabra(palabraSecreta, palabra);
+            palabra.Text = RallitasPalabra(palabraSecreta);
+            palabra.Width=800;
+            palabra.Height=300;
 
         }
-        
         
         public String PalabraSecretaRandom()
         {
             Random rand = new Random();
-            List<String> Palabras = new List<string>() { "Pamplona", "Programador", "Hielo", "Oso", "Java", "Gallina", "Conejo","Ñora" };
-            StringBuilder PalabraSecreta = new StringBuilder(rand.Next(0, Palabras.Count));
-            return PalabraSecreta.ToString();
+            List<String> Palabras = new List<string>() { "PAMPLONA"/*, "PROGRAMADOR", "HIELO", "OSO", "JAVA", "GALLINA", "CONEJO","ÑORA"*/ };
+            return Palabras[rand.Next(0,Palabras.Count())];
         }
 
-        private String RallitasPalabra(String cadena, TextBlock contenedorTexto)
+        private String RallitasPalabra(String cadena)
         {
             StringBuilder PalabraRallitas = new StringBuilder();
             for (int i = 0; i < cadena.Length; i++)
             {
-                contenedorTexto.Text = PalabraRallitas.Append(" _ ").ToString();
+                palabra.Text = PalabraRallitas.Append(" _ ").ToString();
             }
             return PalabraRallitas.ToString();
 
         }
 
-       
-
         // Cambio de texto si la palabra es correcta //
 
+        public void Comprobar(char letra, String palabraSecreta)
+        {
+            for (int i = 0; i < palabraSecreta.Length ; i++)
+            {
+                if (palabraSecreta[i].Equals(letra))
+                {
+
+                }
+            }
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button boton = (Button)sender;
             boton.IsEnabled = false;
             char letraPulsada = (char)boton.Tag;
-
-            if (PalabraSecretaRandom().Contains(letraPulsada))
-            {
-                MessageBox.Show("La letra coincide");
-            }
-
-
+            Comprobar(letraPulsada);
+           
         }
 
-        // Porque demonios no funfa //
+        // Añadir al XAML//
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -107,6 +114,7 @@ namespace Ahorcado
                 if (b.Tag.ToString() == e.Key.ToString())
                 {
                     b.IsEnabled = false;
+                    Comprobar((char)b.Tag);
                 }
             }
         }
