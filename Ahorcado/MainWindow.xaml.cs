@@ -43,14 +43,9 @@ namespace Ahorcado
                 letrasBoton.Content = box;
                 ContenedorLetrasUniformGrid.Children.Add(letrasBoton);
                 letrasBoton.Click += Button_Click;
-
-
             }
 
-
             // Creamos el contenedor de la palabra //
-
-
             ScrollViewer scroll = new ScrollViewer();
             scroll.Content = palabra;
             scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
@@ -84,7 +79,18 @@ namespace Ahorcado
 
         // Cambio de texto si la palabra es correcta //
 
-       
+        public void Comprobar(char letra)
+        {
+            String secreto = RallitasPalabra(PalabraSecretaRandom());
+            for (int i = 0; i < PalabraSecretaRandom().Length; i++)
+            {
+                if (PalabraSecretaRandom()[i].Equals(letra))
+                {
+                    palabra.Text = secreto.Substring()
+                }
+            }
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button boton = (Button)sender;
