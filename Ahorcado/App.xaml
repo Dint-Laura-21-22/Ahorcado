@@ -36,8 +36,15 @@
             <Setter Property="FontFamily" Value="Times New Roman"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="Black"/>
-
+        
         </Style>
+
+        <Style TargetType="{x:Type TextBlock}" x:Key="letrasTextBlock">
+            <Setter Property="Margin" Value="0,10"/>
+            <Setter Property="FontFamily" Value="Rubik"/>
+            <Setter Property="FontSize" Value="90"/>
+        </Style>
+        
         <!--Estilo WrapPanel de Palabra-->
         <Style TargetType="{x:Type WrapPanel}" x:Key="EstiloContenedorPalabras">
             <Setter Property="Margin" Value="20"/>
