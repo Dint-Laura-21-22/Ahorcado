@@ -20,7 +20,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="/assets/0.jpg" Stretch="Uniform" Margin="0,20"></Image>
+        <Image x:Name="ImagenAhorcadoImage" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Source="/assets/0.jpg" Stretch="Uniform" Margin="0,20"></Image>
 
         <TextBlock Style="{StaticResource TituloEstiloTextBlock}" Grid.Row="0" Grid.Column="1" Text="Ahorcado" >
         </TextBlock>

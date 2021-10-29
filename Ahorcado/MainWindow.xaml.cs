@@ -21,16 +21,18 @@ namespace Ahorcado
     public partial class MainWindow : Window
     {
         TextBlock palabra = new TextBlock();
-
-
+        String palabraAdivinar;
+        String rallitasPalabra;
+        char[] palabraSecretaArray;
         public MainWindow()
         {
+
             InitializeComponent();
             // Creamos una lista para los botones //
             List<Char> CaracteresTeclado = Enumerable.Range('A', 'Z' - 'A' + 1).Select(i => (Char)i).ToList<Char>();
             CaracteresTeclado.Insert(14, 'Ñ');
-            // Lista de palabras Adivinar //
-
+            
+           
             // Añadimos los controles y rellenamos //
             foreach (var letraCaracter in CaracteresTeclado)
             {
@@ -52,17 +54,27 @@ namespace Ahorcado
             scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
             PalabrasWrapPanel.Children.Add(scroll);
             palabra.Style = (Style)Application.Current.Resources["PalabrasTexto"];
-            String palabraSecreta = PalabraSecretaRandom();
-            palabra.Text = RallitasPalabra(palabraSecreta);
+            palabraAdivinar = PalabraSecretaRandom();
+            rallitasPalabra = RallitasPalabra(palabraAdivinar);
+            palabra.Text = rallitasPalabra;
             palabra.Width = 800;
             palabra.Height = 300;
+            palabraSecretaArray = palabraAdivinar.ToCharArray();
+
+
 
         }
 
+        private int estado = 4;
+        public BitmapImage GetStageImage()
+        {
+            return new BitmapImage(new Uri(System.IO.Path.Combine(
+                Environment.CurrentDirectory,"../../assets/" + estado + ".jpg")));
+        }
         public String PalabraSecretaRandom()
         {
+            List<String> Palabras = new List<string>() { "PAMPLONA"/*,"PROGRAMADOR", "HIELO", "OSO", "JAVA", "GALLINA", "CONEJO","ÑORA"*/ };
             Random rand = new Random();
-            List<String> Palabras = new List<string>() { "PAMPLONA"/*, "PROGRAMADOR", "HIELO", "OSO", "JAVA", "GALLINA", "CONEJO","ÑORA"*/ };
             return Palabras[rand.Next(0, Palabras.Count())];
         }
 
@@ -78,19 +90,6 @@ namespace Ahorcado
         }
 
         // Cambio de texto si la palabra es correcta //
-
-        public void Comprobar(char letra)
-        {
-            String secreto = RallitasPalabra(PalabraSecretaRandom());
-            for (int i = 0; i < PalabraSecretaRandom().Length; i++)
-            {
-                if (PalabraSecretaRandom()[i].Equals(letra))
-                {
-                    palabra.Text = secreto.Substring()
-                }
-            }
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button boton = (Button)sender;
@@ -99,6 +98,26 @@ namespace Ahorcado
             Comprobar(letraPulsada);
 
         }
+
+        public void Comprobar(char letra)
+        {
+         
+           
+            for (int i = 0; i < palabraAdivinar.Length; i++)
+            {
+                if (palabraSecretaArray[i].Equals(letra))
+                {
+                    palabra.Text= rallitasPalabra.Replace(rallitasPalabra[i], letra).ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Letra incorrecta");
+                }
+            }
+             
+        }
+
+       
 
         // Añadir al XAML//
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -118,11 +137,14 @@ namespace Ahorcado
 
         private void ReiniciarButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Te has rendido");
-
+            MessageBox.Show("Te has rendido" + palabraAdivinar);
+            estado = 10;
+            palabraAdivinar = PalabraSecretaRandom();
+            ImagenAhorcadoImage.Source = GetStageImage();
             foreach (Button b in ContenedorLetrasUniformGrid.Children)
             {
                 b.IsEnabled = true;
+                
             }
 
         }
@@ -130,11 +152,14 @@ namespace Ahorcado
         private void NuevaPartidaButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Has iniciado una nueva partida");
-
             foreach (Button b in ContenedorLetrasUniformGrid.Children)
             {
                 b.IsEnabled = true;
+                
             }
+            estado = 4;
+            ImagenAhorcadoImage.Source = GetStageImage();
+            palabraAdivinar = PalabraSecretaRandom();
         }
     }
 }
